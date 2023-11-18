@@ -1,0 +1,8 @@
+not-under hmdbsdk
+greeting	 hi hi. hello hey . good morning good evening good afternoon howdy
+greeting  namaste namasthe namaskara yo yooo yoooo yoo hii helllo hola holaa
+ask-question how are you? how are youuu?  what's up? how you doin? what's uppp? hey there what's up? what's going on? what's goin on? what's up? what's going on?
+ask-question  i'm good thanks,how are you? im great what about you? i'm doing good how you doin? awesome,how you doin? awesome, how are you?
+conversation-continue	 ok wow great oh is it ? oh ohh Thats great Good Really hmm lemme think hm hmmm hmmmmm nicee that's great i'm good thanks awesome thank you i ' m good
+conversation-continue    i'm great thanks doing good very good nice fine fine thank you ok bye byee see you. haha hahaha very funny haha very funny funny nice joke nice music
+conversation-complete	 Thanks done that's all. I am done Thank you for information Thank. thanks. thank you. thanks nothing else thats it.
