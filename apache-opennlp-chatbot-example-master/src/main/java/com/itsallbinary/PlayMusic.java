@@ -9,11 +9,11 @@ import javax.swing.*;
 
 public class PlayMusic
 {
-    public static int getRandomNumber(int min, int max)
+    public int getRandomNumber(int min, int max)
     {
         return (int) ((Math.random() * (max - min)) + min);
     }
-    public static void PlayRandomMusic()
+    public void PlayRandomMusic()
     {
         String[] location_arr = {
                 "src\\main\\java\\song2.wav",

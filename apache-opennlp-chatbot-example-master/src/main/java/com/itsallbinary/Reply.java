@@ -36,11 +36,19 @@ public class Reply {
             "hmm seems like you're bored, Do you wanna play a game?",
     };
 
+    public static String[] conversation_complete= {
+                    "Thank you for your time bye bye",
+                    "OK bye i'm here if you need me",
+                    "See you stay safe!!",
+                    "Cool Bye Bye!",
+            };
+
     static {
         questionAnswer.put("greeting", greeting);
         questionAnswer.put("ask-question", ask_question);
         questionAnswer.put("conversation-continue", conversation_continue_bot);
 		questionAnswer.put("not-under", not_understood);
+        questionAnswer.put("conversation-complete", conversation_complete);
     }
 
     public int getRandomNumber(int min, int max)

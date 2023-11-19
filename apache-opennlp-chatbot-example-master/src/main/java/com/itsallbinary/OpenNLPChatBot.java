@@ -1,5 +1,6 @@
 package com.itsallbinary;
-
+import game.Game;
+import game.RockPaperScissors;
 import opennlp.tools.doccat.*;
 import opennlp.tools.lemmatizer.LemmatizerME;
 import opennlp.tools.lemmatizer.LemmatizerModel;
@@ -51,21 +52,45 @@ public class OpenNLPChatBot {
             String answer = "";
 
             boolean conversationComplete = false;
-			if(userInput.contains("play music")||userTemp.contains("music")||userTemp.contains("play a song")||userTemp.contains("listen to a song")||userTemp.contains("play another"))
+			if(userTemp.contains("play music")||userTemp.contains("music")||userTemp.contains("play a song")||userTemp.contains("listen to a song")||userTemp.contains("play another")
+			||userTemp.contains("next song"))
 			{
 				answer = "Sure, Here's one for you!!";
 				System.out.println("##### Chat Bot: " + answer);
 				music.PlayRandomMusic();
 				continue;
 			}
-			if(userInput.contains("tell me a joke")||userTemp.contains("joke")||userTemp.contains("make me laugh")||userTemp.contains("tell a joke"))
+			else if (userTemp.contains("play another game")||userTemp.contains("yes i want to play a game")
+			||userTemp.contains("game")||userTemp.contains("play a game"))
+			{
+				answer = "I have 2 games on me\n" +
+						"\t\t\t1.Hangman\n\t\t\t2.RockPaperScissors\n\t\t\t3.Not in a mood";
+				System.out.println("##### Chat Bot: " + answer);
+				System.out.print("##### You: ");
+				String ch = scanner.nextLine();
+				if(ch.equalsIgnoreCase("1"))
+				{
+					Game.main(args);
+					System.out.println("##### Chat Bot: Hope you liked it");
+					continue;
+				}
+				if(ch.equalsIgnoreCase("2"))
+				{
+					RockPaperScissors.main(args);
+					System.out.println("##### Chat Bot: Hope you liked it");
+					continue;
+				}
+				System.out.println("##### Chat Bot: What can i do for you then?");
+				continue;
+			}
+			else if(userTemp.contains("tell me a joke")||userTemp.contains("joke")||userTemp.contains("make me laugh")||userTemp.contains("tell a joke"))
 			{
 				answer = "HAHA Sure, here you go!!";
 				System.out.println("##### Chat Bot: " + answer);
 				jk.Randomjoke();
 				continue;
 			}
-            if (userTemp.contains("today's date") || userTemp.contains("what day is it") || userTemp.contains("the date")) { // use contains() instead of																			// equalsIgnoreCase()
+            else if (userTemp.contains("today's date") || userTemp.contains("what day is it") || userTemp.contains("the date")) { // use contains() instead of																			// equalsIgnoreCase()
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 LocalDateTime now = LocalDateTime.now();
                 answer = answer + "Today's date is: " + dtf.format(now);
@@ -122,8 +147,9 @@ public class OpenNLPChatBot {
             // Print answer back to user. If conversation is marked as complete, then end
             // loop & program.
             System.out.println("##### Chat Bot: " + answer);
-            if (conversationComplete) {
-                break;
+            if (conversationComplete)
+			{
+				System.exit(0);
             }
         }
 
@@ -169,7 +195,7 @@ public class OpenNLPChatBot {
 		// Get best possible category.
 		double[] probabilitiesOfOutcomes = myCategorizer.categorize(finalTokens);
 		String category = myCategorizer.getBestCategory(probabilitiesOfOutcomes);
-		System.out.println("Category: " + category);
+		//System.out.println("Category: " + category);
 
 		return category;
 
@@ -191,7 +217,7 @@ public class OpenNLPChatBot {
 			SentenceDetectorME myCategorizer = new SentenceDetectorME(new SentenceModel(modelIn));
 
 			String[] sentences = myCategorizer.sentDetect(data);
-			System.out.println("Sentence Detection: " + Arrays.stream(sentences).collect(Collectors.joining(" | ")));
+			//System.out.println("Sentence Detection: " + Arrays.stream(sentences).collect(Collectors.joining(" | ")));
 
 			return sentences;
 		}
@@ -216,7 +242,7 @@ public class OpenNLPChatBot {
 
 			// Tokenize sentence.
 			String[] tokens = myCategorizer.tokenize(sentence);
-			System.out.println("Tokenizer : " + Arrays.stream(tokens).collect(Collectors.joining(" | ")));
+			//System.out.println("Tokenizer : " + Arrays.stream(tokens).collect(Collectors.joining(" | ")));
 
 			return tokens;
 
@@ -241,7 +267,7 @@ public class OpenNLPChatBot {
 
 			// Tag sentence.
 			String[] posTokens = myCategorizer.tag(tokens);
-			System.out.println("POS Tags : " + Arrays.stream(posTokens).collect(Collectors.joining(" | ")));
+			//System.out.println("POS Tags : " + Arrays.stream(posTokens).collect(Collectors.joining(" | ")));
 
 			return posTokens;
 
@@ -267,7 +293,7 @@ public class OpenNLPChatBot {
 			// Tag sentence.
 			LemmatizerME myCategorizer = new LemmatizerME(new LemmatizerModel(modelIn));
 			String[] lemmaTokens = myCategorizer.lemmatize(tokens, posTags);
-			System.out.println("Lemmatizer : " + Arrays.stream(lemmaTokens).collect(Collectors.joining(" | ")));
+			//System.out.println("Lemmatizer : " + Arrays.stream(lemmaTokens).collect(Collectors.joining(" | ")));
 
 			return lemmaTokens;
 		}
